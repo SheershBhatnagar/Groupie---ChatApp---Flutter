@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDUsOtagXwxuXQRW8f5GLLefWU3BqpHi-g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>86009354317</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sheershbhatnagar.groupie.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>groupie-771e9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>groupie-771e9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:86009354317:ios:a84256aeaee47cd833a404</string>
+	<key>DATABASE_URL</key>
+	<string>https://groupie-771e9-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>

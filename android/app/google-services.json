@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "330012628255",
+    "project_id": "feed-me-34958",
+    "storage_bucket": "feed-me-34958.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330012628255:android:42a36c18cb66ddd343cc2a",
+        "android_client_info": {
+          "package_name": "com.sheershbhatnagar.my_meal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkNrrqh0ndzEvCDDXemFYcmbvORBRCnw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
