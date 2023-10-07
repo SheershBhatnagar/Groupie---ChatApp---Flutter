@@ -17,15 +17,24 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,43 +52,12 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyACYuudGOkGmnN4TIL-kzucbzA5tuaM3ss',
-    appId: '1:86009354317:web:615dd87009b2738933a404',
-    messagingSenderId: '86009354317',
-    projectId: 'groupie-771e9',
-    authDomain: 'groupie-771e9.firebaseapp.com',
-    databaseURL: 'https://groupie-771e9-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'groupie-771e9.appspot.com',
-    measurementId: 'G-SYGQFEB6JE',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCQGODGJMshw32xvLt1sB5tGMuiH0sqfj0',
-    appId: '1:86009354317:android:74438180461b283933a404',
+    appId: '1:86009354317:android:084a262d1b9dc92333a404',
     messagingSenderId: '86009354317',
     projectId: 'groupie-771e9',
     databaseURL: 'https://groupie-771e9-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'groupie-771e9.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDUsOtagXwxuXQRW8f5GLLefWU3BqpHi-g',
-    appId: '1:86009354317:ios:37dda80ef3b9747333a404',
-    messagingSenderId: '86009354317',
-    projectId: 'groupie-771e9',
-    databaseURL: 'https://groupie-771e9-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'groupie-771e9.appspot.com',
-    iosBundleId: 'com.sheershbhatnagar.groupie',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDUsOtagXwxuXQRW8f5GLLefWU3BqpHi-g',
-    appId: '1:86009354317:ios:a84256aeaee47cd833a404',
-    messagingSenderId: '86009354317',
-    projectId: 'groupie-771e9',
-    databaseURL: 'https://groupie-771e9-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'groupie-771e9.appspot.com',
-    iosBundleId: 'com.sheershbhatnagar.groupie.RunnerTests',
   );
 }
