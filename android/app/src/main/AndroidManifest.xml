@@ -5,7 +5,7 @@
     <application
         android:label="Groupie"
         android:name="${applicationName}"
-        android:icon="@mipmap/animal"
+        android:icon="@mipmap/login"
         android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"

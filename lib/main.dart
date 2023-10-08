@@ -70,5 +70,4 @@ class _MyAppState extends State<MyApp> {
       home: _isSignedIn ? HomePage() : LoginPage(),
     );
   }
-
 }

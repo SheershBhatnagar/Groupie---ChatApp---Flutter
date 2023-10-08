@@ -27,4 +27,44 @@ class DatabaseService {
     return snapshot;
   }
 
+  getUserGroups() async {
+    return userCollection.doc(uid).snapshots();
+  }
+
+  Future createGroup(String userName, String id, String groupName) async {
+    DocumentReference groupDocumentReference = await groupCollection.add({
+      "groupName": groupName,
+      "groupIcon": "",
+      "admin": "${id}_$userName",
+      "members": [],
+      "groupId": "",
+      "recentMessage": "",
+      "recentMessageSender": "",
+    });
+
+    await groupDocumentReference.update({
+      "members": FieldValue.arrayUnion(["${id}_$userName"]),
+      "groupId": groupDocumentReference.id,
+    });
+
+    DocumentReference userDocumentReference = await userCollection.doc(uid);
+    return await userDocumentReference.update({
+      "groups": FieldValue.arrayUnion(["${groupDocumentReference.id}_$groupName"]),
+    });
+  }
+
+  getChats(String groupId) async {
+    return groupCollection.doc(groupId).collection("messages").orderBy("time").snapshots();
+  }
+
+  Future getGroupAdmin(String groupId) async {
+    DocumentReference d = groupCollection.doc(groupId);
+    DocumentSnapshot documentSnapshot = await d.get();
+
+    return documentSnapshot['admin'];
+  }
+
+  getGroupMembers(groupId) async {
+    return groupCollection.doc(groupId).snapshots();
+  }
 }
