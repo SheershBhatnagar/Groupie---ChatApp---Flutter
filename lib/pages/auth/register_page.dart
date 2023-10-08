@@ -78,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        fullName = val;
+                        fullName = val.trim();
                       });
                     },
                     validator: (val) {
@@ -103,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        email = val;
+                        email = val.trim();
                       });
                     },
                     validator: (val) {
@@ -124,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        password = val;
+                        password = val.trim();
                       });
                     },
                     validator: (val) {
@@ -166,7 +166,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               color: Constants().primaryColor,
                             ),
                             recognizer: TapGestureRecognizer()..onTap = () {
-                              nextScreen(context, LoginPage());
+                              nextScreen(context, const LoginPage());
                             }
                         ),
                       ],

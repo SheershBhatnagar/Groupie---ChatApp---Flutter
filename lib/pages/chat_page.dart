@@ -31,6 +31,8 @@ class _ChatPageState extends State<ChatPage> {
 
   String admin = "";
 
+  TextEditingController messageController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -74,17 +76,77 @@ class _ChatPageState extends State<ChatPage> {
                 groupName: widget.groupName,
                 groupId: widget.groupId,
                 adminName: admin,
+                userName: widget.userName,
               ));
             },
             icon: const Icon(Icons.info_outline_rounded),
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          widget.groupName,
-        ),
+      body: Stack(
+        children: [
+          // chatMessages(),
+          Container(
+            alignment: Alignment.bottomCenter,
+            width: MediaQuery.of(context).size.width,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 18,
+              ),
+              color: Colors.grey[700],
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: messageController,
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      decoration: const InputDecoration(
+                        hintText: "Type your message...",
+                        hintStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12,),
+                  InkWell(
+                    onTap: () {
+                      sendMessage();
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: Constants().primaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  chatMessages() {
+
+  }
+
+  sendMessage() {
+
   }
 }

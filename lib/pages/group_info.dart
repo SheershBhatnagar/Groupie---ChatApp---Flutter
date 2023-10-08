@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:groupie/helper/helper_function.dart';
+import 'package:groupie/pages/home_page.dart';
 
 import 'package:groupie/services/database_service.dart';
+import 'package:groupie/widgets/widgets.dart';
 
 import '../shared/constants.dart';
 
@@ -12,12 +15,14 @@ class GroupInfo extends StatefulWidget {
   final String groupId;
   final String groupName;
   final String adminName;
+  final String userName;
 
   const GroupInfo({
     super.key,
     required this.groupId,
     required this.groupName,
     required this.adminName,
+    required this.userName,
   });
 
   @override
@@ -67,7 +72,38 @@ class _GroupInfoState extends State<GroupInfo> {
         actions: [
           IconButton(
             onPressed: () {
-
+              showDialog(context: context, builder: (context){
+                return AlertDialog(
+                  content: const Text(
+                    "Are you sure you want to exit the group?",
+                  ),
+                  title: const Text(
+                    "Exit",
+                  ),
+                  actions: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () async {
+                        await DatabaseService(uid: firebaseAuth.currentUser!.uid).toggleGroupJoin(widget.groupId, widget.userName, widget.groupName).whenComplete(() {
+                          nextScreenReplace(context, const HomePage());
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.exit_to_app,
+                        color: Colors.green,
+                      ),
+                    ),
+                  ],
+                );
+              });
             },
             icon: const Icon(Icons.exit_to_app_rounded),
           ),
