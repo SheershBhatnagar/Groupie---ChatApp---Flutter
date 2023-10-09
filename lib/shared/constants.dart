@@ -9,4 +9,5 @@ class Constants {
   static String projectId = 'groupie-771e9';
 
   final primaryColor = const Color(0xFFEE7B64);
+  final receiveMessageColor = const Color(0xFFE1624A);
 }

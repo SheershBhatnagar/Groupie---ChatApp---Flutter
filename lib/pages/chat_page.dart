@@ -8,6 +8,8 @@ import 'package:groupie/services/database_service.dart';
 import 'package:groupie/shared/constants.dart';
 import 'package:groupie/widgets/widgets.dart';
 
+import '../widgets/message_tile.dart';
+
 class ChatPage extends StatefulWidget {
 
   final String groupId;
@@ -85,15 +87,15 @@ class _ChatPageState extends State<ChatPage> {
       ),
       body: Stack(
         children: [
-          // chatMessages(),
+          chatMessages(),
           Container(
             alignment: Alignment.bottomCenter,
             width: MediaQuery.of(context).size.width,
             child: Container(
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 18,
+                horizontal: 10,
+                vertical: 10,
               ),
               color: Colors.grey[700],
               child: Row(
@@ -107,7 +109,7 @@ class _ChatPageState extends State<ChatPage> {
                       decoration: const InputDecoration(
                         hintText: "Type your message...",
                         hintStyle: TextStyle(
-                          color: Colors.white,
+                          color: Colors.grey,
                         ),
                         border: InputBorder.none,
                       ),
@@ -143,10 +145,37 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   chatMessages() {
-
+    return StreamBuilder(
+      stream: chats,
+      builder: (context, AsyncSnapshot snapshot) {
+        return snapshot.hasData ? ListView.builder(
+          itemCount: snapshot.data.docs.length,
+          itemBuilder: (context, index) {
+            return MessageTile(
+              message: snapshot.data.docs[index]['message'],
+              sender: snapshot.data.docs[index]['sender'],
+              sentByMe: widget.userName == snapshot.data.docs[index]['sender'],
+            );
+          },
+        ) : Container();
+      },
+    );
   }
 
   sendMessage() {
 
+    if(messageController.text.isNotEmpty) {
+      Map<String, dynamic> chatMessageMap = {
+        "message": messageController.text.trim(),
+        "sender": widget.userName,
+        "time": DateTime.now().millisecondsSinceEpoch,
+      };
+
+      DatabaseService().sendMessage(widget.groupId, chatMessageMap);
+
+      setState(() {
+        messageController.clear();
+      });
+    }
   }
 }
